@@ -90,6 +90,7 @@
           <ros>
             <!-- <namespace>/tb3</namespace> -->
             <remapping>~/out:=imu</remapping>
+            <initial_orientation_as_reference>true</initial_orientation_as_reference>
           </ros>
         </plugin>
       </sensor>
@@ -128,39 +129,38 @@
           </mesh>
         </geometry>
       </visual>
-
-      <sensor name="hls_lfcd_lds" type="ray">
-        <always_on>true</always_on>
-        <visualize>true</visualize>
-        <pose>-0.032 0 0.171 0 0 0</pose>
-        <update_rate>5</update_rate>
+      <sensor name="sensor_ray" type="ray">
+        <visualize>false</visualize>
+        <pose>0.032 0 0.171 0 0 0</pose>
         <ray>
           <scan>
             <horizontal>
-              <samples>360</samples>
-              <resolution>1.000000</resolution>
-              <min_angle>0.000000</min_angle>
-              <max_angle>6.280000</max_angle>
+              <samples>500</samples>
+              <min_angle>0</min_angle>
+              <max_angle>6.24</max_angle>
             </horizontal>
+            <vertical>
+              <samples>16</samples>
+              <min_angle>-0.2617993878</min_angle>
+              <max_angle>0.2617993878</max_angle>
+            </vertical>
           </scan>
           <range>
-            <min>0.120000</min>
-            <max>3.5</max>
-            <resolution>0.015000</resolution>
+            <min>0.05</min>
+            <max>50.0</max>
           </range>
-          <noise>
-            <type>gaussian</type>
-            <mean>0.0</mean>
-            <stddev>0.01</stddev>
-          </noise>
         </ray>
-        <plugin name="turtlebot3_laserscan" filename="libgazebo_ros_ray_sensor.so">
+        <plugin name="turtlebot3_laserscan" filename="libgazebo_ros_block_laser.so">
+          <gaussianNoise>0.00</gaussianNoise>
+          <hokuyoMinIntensity>1</hokuyoMinIntensity>
+          <alwaysOn>true</alwaysOn>
+          <updateRate>5</updateRate>
           <ros>
-            <!-- <namespace>/tb3</namespace> -->
-            <remapping>~/out:=scan</remapping>
+                <!-- <namespace>/tb3</namespace> -->
+                <remapping>~/out:=scan</remapping>
           </ros>
-          <output_type>sensor_msgs/LaserScan</output_type>
-          <frame_name>base_scan</frame_name>
+        <output_type>sensor_msgs/Pointcloud</output_type>
+        <frameName>base_scan</frameName>
         </plugin>
       </sensor>
     </link>
