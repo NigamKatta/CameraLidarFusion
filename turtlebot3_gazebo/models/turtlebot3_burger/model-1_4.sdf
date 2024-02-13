@@ -157,9 +157,9 @@
           <updateRate>5</updateRate>
           <ros>
                 <!-- <namespace>/tb3</namespace> -->
-                <remapping>~/out:=scan</remapping>
+                <remapping>~/out:=pointcloud2</remapping>
           </ros>
-        <output_type>sensor_msgs/Pointcloud</output_type>
+        <output_type>sensor_msgs/Pointcloud2</output_type>
         <frameName>base_scan</frameName>
         </plugin>
       </sensor>
@@ -318,7 +318,7 @@
     <link name="camera_link"/>
       <link name="camera_rgb_frame">
         <inertial>
-          <pose>-0.032 0 0.171 0 0 0</pose>
+          <pose>-0.052 0 0.191 0 0 0</pose>
             <inertia>
               <ixx>0.001</ixx>
               <ixy>0.000</ixy>
@@ -330,7 +330,7 @@
           <mass>0.035</mass>
         </inertial>
 
-      <pose>-0.032 0 0.171 0 0 0</pose>
+      <pose>-0.052 0 0.191 0 0 0</pose>
       <sensor name="camera" type="camera">
         <always_on>true</always_on>
         <visualize>true</visualize>
